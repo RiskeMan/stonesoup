@@ -9,5 +9,5 @@ public interface MainService {
 
 	public List<boardVO> board_list(Criteria cri);
 	
-	
+	public int countBoard(Criteria cri);
 }

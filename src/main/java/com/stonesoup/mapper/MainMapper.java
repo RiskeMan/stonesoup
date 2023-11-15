@@ -7,5 +7,10 @@ import com.stonesoup.data.boardVO;
 
 public interface MainMapper {
 
+	// 페이징 목록
 	public List<boardVO> board_list(Criteria cri);
+	
+	// 전체 게시글 데이터의 숫자
+	public int countBoard(Criteria cri);
+	
 }

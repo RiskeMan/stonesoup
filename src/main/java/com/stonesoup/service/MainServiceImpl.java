@@ -23,6 +23,12 @@ public class MainServiceImpl implements MainService {
 		// TODO Auto-generated method stub
 		return mainMapper.board_list(cri);
 	}
+
+	@Override
+	public int countBoard(Criteria cri) {
+		// TODO Auto-generated method stub
+		return mainMapper.countBoard(cri);
+	}
 	
 	
 }

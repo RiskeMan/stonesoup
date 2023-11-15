@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.stonesoup.data.Criteria;
+import com.stonesoup.data.PageDTO;
 import com.stonesoup.data.boardVO;
 import com.stonesoup.service.MainService;
 
@@ -35,16 +36,12 @@ public class MainController {
 		List<boardVO> list = mainService.board_list(cri);
 		model.addAttribute("list", list);
 		
+		int count = mainService.countBoard(cri);
 		
+		PageDTO pageDTO = new PageDTO(cri, count);
+		model.addAttribute("pageMaker", pageDTO);
 		
 	}
 	
-	@PostMapping("/board_list")
-	public String board_list(boardVO vo) {
-		
-		
-		
-		return "";
-	}
 	
 }
