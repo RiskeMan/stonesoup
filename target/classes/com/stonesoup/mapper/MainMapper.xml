@@ -4,6 +4,19 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.stonesoup.mapper.MainMapper">
 
-	
+	<select id="board_list" resultType="com.stonesoup.data.boardVO">
+		
+		SELECT
+			T_NUM,
+			T_NAME,
+			T_CONTENT,
+			MEMBER,
+			T_DATE,
+			T_M_DATE,
+			T_VIEWS
+		FROM
+			BODER_DATA
+		
+	</select>
 
 </mapper>  
