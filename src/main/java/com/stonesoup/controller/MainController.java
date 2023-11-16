@@ -43,5 +43,28 @@ public class MainController {
 		
 	}
 	
+	@GetMapping("/board_view")
+	public String board_view(Criteria cri, Long t_num, Model model) {
+		
+		
+		
+		// 조회수 증가 구문
+		mainService.board_t_views_up(t_num);
+		
+		// 페이지 조회 구문
+		boardVO view = mainService.board_view(t_num);
+		
+		model.addAttribute("view", view);
+		
+		log.info("조회수");
+		return "/main/board_view";
+	}
+	
+	@GetMapping("/board_Maker")
+	public void board_Maker() {
+		
+		
+	}
+	
 	
 }

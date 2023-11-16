@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.stonesoup.data.Criteria;
 import com.stonesoup.data.boardVO;
 import com.stonesoup.mapper.MainMapper;
+import com.stonesoup.mapper.PagingMapper;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
@@ -17,18 +18,32 @@ import lombok.extern.log4j.Log4j;
 public class MainServiceImpl implements MainService {
 
 	private final MainMapper mainMapper;
+	private final PagingMapper pagingMapper; // 페이징 
 
 	@Override
 	public List<boardVO> board_list(Criteria cri) {
 		// TODO Auto-generated method stub
-		return mainMapper.board_list(cri);
+		return pagingMapper.board_list(cri);
 	}
 
 	@Override
 	public int countBoard(Criteria cri) {
 		// TODO Auto-generated method stub
-		return mainMapper.countBoard(cri);
+		return pagingMapper.countBoard(cri);
 	}
-	
+
+	@Override
+	public void board_t_views_up(Long t_num) {
+		// TODO Auto-generated method stub
+		mainMapper.board_t_views_up(t_num);
+	}
+
+	@Override
+	public boardVO board_view(Long t_num) {
+		// TODO Auto-generated method stub
+		return mainMapper.board_view(t_num);
+	}
+
+
 	
 }

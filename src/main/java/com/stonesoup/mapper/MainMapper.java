@@ -1,16 +1,13 @@
 package com.stonesoup.mapper;
 
-import java.util.List;
-
-import com.stonesoup.data.Criteria;
 import com.stonesoup.data.boardVO;
 
 public interface MainMapper {
-
-	// 페이징 목록
-	public List<boardVO> board_list(Criteria cri);
 	
-	// 전체 게시글 데이터의 숫자
-	public int countBoard(Criteria cri);
+	public void board_t_views_up(Long t_num);
+
+	public boardVO board_view(Long t_num);
+	
+//	public void board_Maker(boardVO vo);
 	
 }

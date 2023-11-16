@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.stonesoup.mapper.PagingMapper">
+
+	 	<!-- 공통된 SQL구문작업 -->
+ 	<sql id="criteria">
+ 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+ 			<foreach collection="typeArr" item="type"> 
+ 			<!-- get을 입력하지 않아도, 롬복에서 자동으로 연동해 만들어 준다. -->
+ 				<trim prefix="or">
+ 					<choose>
+ 						<when test="type == 'T'.toString()">
+ 							title like '%' || #{keyword} || '%'
+ 						</when>
+ 						<when test="type == 'W'.toString()">
+ 							writer like '%' || #{keyword} || '%'
+ 						</when>
+ 						<when test="type == 'C'.toString()">
+ 							content like '%' || #{keyword} || '%'
+ 						</when>
+ 					</choose>
+ 				</trim>
+ 			</foreach>
+ 		</trim>
+ 	</sql>
+
+	<!-- CDATA섹션 -->
+	<select id="board_list" resultType="com.stonesoup.data.boardVO" parameterType="com.stonesoup.data.Criteria">
+
+		
+		<![CDATA[
+			select
+    			t_num, t_name, t_content, member, t_date, t_m_date, t_views
+			from (
+				select /*+INDEX_DESC(BODER_DATA PK_BODER_DATA)*/
+				rownum rn, t_num, t_name, t_content, member, t_date, t_m_date, t_views
+			from BODER_DATA
+			where
+		]]>
+
+		<include refid="criteria"></include>
+
+		<![CDATA[
+			rownum <= #{pageNum} * #{amount}
+		)
+		where rn > (#{pageNum} -1) * #{amount}]]>
+
+	</select>
+
+	<select id="countBoard" resultType="int">
+		SELECT COUNT(*) 
+		FROM BODER_DATA 
+		WHERE <include refid="criteria"></include>
+		T_NUM > 0
+	</select>
+
+</mapper>

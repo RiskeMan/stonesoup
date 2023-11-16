@@ -59,7 +59,7 @@
                                                 <c:forEach items="${ list }" var="lest">
                                                     <tr>
                                                         <td>${ lest.t_num }</td>
-                                                        <td><a class="move" href="#" data-bno="${ lest.t_num }">${ lest.t_name }</a></td>
+                                                        <td><a class="move" href="#" data-t_num="${ lest.t_num }">${ lest.t_name }</a></td>
                                                         <td>${ lest.member }</td>
                                                         <td>${ lest.t_views }</td>
                                                         <td><fmt:formatDate value="${ lest.t_date }" pattern="yyyy/MM/dd hh:mm:ss" /></td>
@@ -147,6 +147,8 @@
 
 
 	<%@include file="/WEB-INF/views/comm/header.jsp" %>
+	<!-- j쿼리 구문 -->
+	<%@include file="/WEB-INF/views/comm/plugln.jsp" %>
     <script>
 
         // 폼태그 참조.
@@ -174,38 +176,18 @@
 
         // 2) 제목 클릭시 이벤트 설정 : 게시물 읽기
         // 10개의 <a class="move">제목</a> 태그를 참조해 forEach로 반복하여 입력해 Array형태로 저장하는 함수.
-        const moves = document.getElementsByClassName("move");
+        $(document).ready(function() {
 
-        Array.from(moves).forEach(function(move) {
-            // actionForm 전송 작업
-            move.addEventListener("click", function(event) {
-                event.preventDefault();
+            $("a.move").on("click", function(e) {
+                
+                e.preventDefault();
+                
+                let t_num = $(this).data("t_num");
+                console.log("작동위치 + t_num", t_num)
 
-                // <a href-"#" data-bno="게시물번호" data-name="값" data-title="값"> 
-                // 로 데이터를 받아 변수값에 저장한다.(dataset)
-                let bno = event.target.dataset.bno;
-
-                // bno제거작업
-                // 목록에서 제목 클릭 후 게시물 읽기에서 뒤로버튼에 의하여 목록으로 돌아와
-                // 다시 제목을 클릭하면, bno피라미터가 추가되기 떄문에,
-                // 기존 bno피라미터를 삭제하여야 한다.
-                document.getElementById("bno").remove();
-
-                // <input type='hidden' name='bno' value='게시물번호'>
-                // HTML DOM문법.
-                const newInput = document.createElement("input");
-                newInput.setAttribute("type", "hidden")
-                newInput.setAttribute("name", "bno")
-                newInput.setAttribute("id", "bno")
-                newInput.setAttribute("value", bno)
-                actionForm.appendChild(newInput);
-
-                // actionForm.append("<input type='hidden' name='bno' value='" + bno + "'>");
-                actionForm.setAttribute("action", "#");
-
-                actionForm.submit();
-            });
-        });
+                window.location.href = "/main/board_view?t_num=" + t_num;
+            })
+        })
 
     </script>
 
