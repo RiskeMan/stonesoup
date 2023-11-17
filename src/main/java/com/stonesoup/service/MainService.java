@@ -17,5 +17,5 @@ public interface MainService {
 	
 	public boardVO board_view(Long t_num);
 	
-//	public void board_Maker(boardVO vo);
+	public void board_Maker(boardVO vo);
 }

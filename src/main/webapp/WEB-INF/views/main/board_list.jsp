@@ -128,7 +128,7 @@
                                                 </form>
                                             </div>
                                         </div>
-                                        <a class="btn btn-primary" href="#" role="button">글쓰기</a>
+                                        <a class="btn btn-primary" id="maker" href="#" role="button">글쓰기</a>
 
                                     </div>
                                 </div>
@@ -178,14 +178,22 @@
         // 10개의 <a class="move">제목</a> 태그를 참조해 forEach로 반복하여 입력해 Array형태로 저장하는 함수.
         $(document).ready(function() {
 
+            // 글 제목 클릭 a class="move"
             $("a.move").on("click", function(e) {
                 
                 e.preventDefault();
                 
                 let t_num = $(this).data("t_num");
-                console.log("작동위치 + t_num", t_num)
+                // console.log("작동위치 + t_num", t_num)
 
                 window.location.href = "/main/board_view?t_num=" + t_num;
+            })
+
+            // 글쓰기 클릭 a class="btn btn-primary"
+            $("#maker").on("click", function(e) {
+                
+                e.preventDefault();
+                location.href = "/main/board_maker";
             })
         })
 

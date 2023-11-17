@@ -50,18 +50,32 @@ public class MainController {
 		
 		// 조회수 증가 구문
 		mainService.board_t_views_up(t_num);
+//		log.info("조회수");
 		
 		// 페이지 조회 구문
 		boardVO view = mainService.board_view(t_num);
 		
 		model.addAttribute("view", view);
 		
-		log.info("조회수");
 		return "/main/board_view";
 	}
 	
-	@GetMapping("/board_Maker")
+	@GetMapping("/board_maker")
 	public void board_Maker() {
+		
+	}
+	
+	@PostMapping("/board_maker")
+	public String board_Maker(boardVO vo) {
+		
+		mainService.board_Maker(vo);
+		
+		
+		return "redirect:/main/board_list";
+	}
+	
+	@GetMapping("/board_edit")
+	public void board_edit() {
 		
 		
 	}

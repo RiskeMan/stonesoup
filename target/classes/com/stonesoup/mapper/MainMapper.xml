@@ -25,13 +25,35 @@
 			T_NUM = #{t_num}
 	
 	</select>
-
+	
+	<insert id="board_maker" parameterType="com.stonesoup.data.boardVO">
+		
+		INSERT INTO
+			BODER_DATA(T_NUM, T_NAME, T_CONTENT, MEMBER, T_DATE, T_M_DATE)
+		VALUES
+			(PK_BODER_DATA.NEXTVAL, #{t_name}, #{t_content}, #{member}, SYSDATE, SYSDATE)
+	
+	</insert>
+	
 <!-- 
-	<insert id="board_Maker" parameterType="com.stonesoup.data.boardVO">
+	<insert id="board_maker" parameterType="com.stonesoup.data.boardVO">
 		
-		
+		MERGE INTO
+			BODER_DATA
+		USING
+			DUAL
+		ON
+			(T_NUM = #{t_num} AND MEMBER = #{member})
+		WHEN MATCHED THEN
+			UPDATE
+				SET T_NAME = #{t_name}, T_CONTENT = #{t_content}, T_M_DATE = SYSDATE
+            WHERE
+                T_NUM = #{t_num}
+		WHEN NOT MATCHED THEN
+			INSERT(T_NUM, T_NAME, T_CONTENT, MEMBER, T_DATE, T_M_DATE)
+			VALUES(PK_BODER_DATA.NEXTVAL, #{title}, #{content}, #{writer}, SYSDATE, SYSDATE)
 		
 	</insert>
- -->	
+ -->
 	
 </mapper>  

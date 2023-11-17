@@ -17,8 +17,8 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 public class MainServiceImpl implements MainService {
 
-	private final MainMapper mainMapper;
 	private final PagingMapper pagingMapper; // 페이징 
+	private final MainMapper mainMapper;
 
 	@Override
 	public List<boardVO> board_list(Criteria cri) {
@@ -42,6 +42,12 @@ public class MainServiceImpl implements MainService {
 	public boardVO board_view(Long t_num) {
 		// TODO Auto-generated method stub
 		return mainMapper.board_view(t_num);
+	}
+
+	@Override
+	public void board_Maker(boardVO vo) {
+		// TODO Auto-generated method stub
+		mainMapper.board_maker(vo);
 	}
 
 

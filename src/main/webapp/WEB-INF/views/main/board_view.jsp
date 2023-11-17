@@ -75,7 +75,7 @@
                                                         value="${ view.member }" readonly>
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Content</label>
+                                                    <label>내용</label>
                                                     <textarea class="form-control" rows="3" name="content" readonly
                                                         style="height: 500px">${ view.t_content }</textarea>
                                                 </div>
@@ -92,12 +92,9 @@
                                                         readonly>
                                                 </div>
                                             </div>
-                
-                                            <div class="box-footer">
-                                                <!-- Modufy(수정), Delete(삭제), List(목록) 버튼 클릭시 아래 form태그를 전송한다. -->
-                                                <form id="curListInfo" action="" method="get">
 
-                                                </form>
+                                            <div class="box-footer">
+
                                                 <button type="button" id="btn_modify" class="btn btn-primary">수정</button>
                                                 <button type="button" id="btn_list" class="btn btn-primary">목록</button>
                                                 <button type="button" id="btn_delete" class="btn btn-primary">삭제</button>

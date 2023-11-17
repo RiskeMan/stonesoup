@@ -8,6 +8,6 @@ public interface MainMapper {
 
 	public boardVO board_view(Long t_num);
 	
-//	public void board_Maker(boardVO vo);
+	public void board_maker(boardVO vo);
 	
 }
