@@ -34,9 +34,9 @@
 			select
     			t_num, t_name, t_content, member, t_date, t_m_date, t_views
 			from (
-				select /*+INDEX_DESC(BODER_DATA PK_BODER_DATA)*/
+				select /*+INDEX_DESC(BOARD_DATA PK_BOARD_DATA)*/
 				rownum rn, t_num, t_name, t_content, member, t_date, t_m_date, t_views
-			from BODER_DATA
+			from BOARD_DATA
 			where
 		]]>
 
@@ -51,7 +51,7 @@
 
 	<select id="countBoard" resultType="int">
 		SELECT COUNT(*) 
-		FROM BODER_DATA 
+		FROM BOARD_DATA 
 		WHERE <include refid="criteria"></include>
 		T_NUM > 0
 	</select>

@@ -7,7 +7,7 @@
 	<update id="board_t_views_up">
 	
 		UPDATE
-			BODER_DATA
+			BOARD_DATA
 		SET
 			T_VIEWS = T_VIEWS + 1
 		WHERE
@@ -20,7 +20,7 @@
 		SELECT
 			T_NUM, T_NAME, T_CONTENT, MEMBER, T_DATE, T_M_DATE, T_VIEWS
 		FROM
-			BODER_DATA
+			BOARD_DATA
 		WHERE
 			T_NUM = #{t_num}
 	
@@ -29,9 +29,9 @@
 	<insert id="board_maker" parameterType="com.stonesoup.data.boardVO">
 		
 		INSERT INTO
-			BODER_DATA(T_NUM, T_NAME, T_CONTENT, MEMBER, T_DATE, T_M_DATE)
+			BOARD_DATA(T_NUM, T_NAME, T_CONTENT, MEMBER, T_DATE, T_M_DATE)
 		VALUES
-			(PK_BODER_DATA.NEXTVAL, #{t_name}, #{t_content}, #{member}, SYSDATE, SYSDATE)
+			(PK_BOARD_DATA.NEXTVAL, #{t_name}, #{t_content}, #{member}, SYSDATE, SYSDATE)
 	
 	</insert>
 	
@@ -39,7 +39,7 @@
 	<insert id="board_maker" parameterType="com.stonesoup.data.boardVO">
 		
 		MERGE INTO
-			BODER_DATA
+			BOARD_DATA
 		USING
 			DUAL
 		ON
@@ -51,7 +51,7 @@
                 T_NUM = #{t_num}
 		WHEN NOT MATCHED THEN
 			INSERT(T_NUM, T_NAME, T_CONTENT, MEMBER, T_DATE, T_M_DATE)
-			VALUES(PK_BODER_DATA.NEXTVAL, #{title}, #{content}, #{writer}, SYSDATE, SYSDATE)
+			VALUES(PK_BOAER_DATA.NEXTVAL, #{title}, #{content}, #{writer}, SYSDATE, SYSDATE)
 		
 	</insert>
  -->
@@ -59,10 +59,22 @@
  	<update id="board_edit">
  		
 		UPDATE
+			BOARD_DATA
+		SET
 			SET T_NAME = #{t_name}, T_CONTENT = #{t_content}, T_M_DATE = SYSDATE
 		WHERE
 			T_NUM = #{t_num}
  		
  	</update>
+	
+	<delete id="board_delete">
+	
+		DELETE FROM
+			BOARD_DATA
+		WHERE
+			T_NUM = #{t_num}
+	
+	</delete>
+	
 	
 </mapper>  

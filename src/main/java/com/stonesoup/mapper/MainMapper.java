@@ -12,4 +12,6 @@ public interface MainMapper {
 	
 	public void board_edit(Long t_num);
 	
+	public void board_delete(Long t_num);
+	
 }

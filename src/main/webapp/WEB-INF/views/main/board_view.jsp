@@ -20,7 +20,7 @@
                 <%@include file="/WEB-INF/views/comm/css.jsp" %>
 
             </head>
-
+BOAER
             <body class="text-center">
 
                 <header>
@@ -49,15 +49,10 @@
                                                     <form role="form" method="get" action="/main/board_edit">
 
                                                         <!-- 이전 페이지 정보 -->
-                                                        <input type="hidden" name="pageNum" id="pageNum"
-                                                            value="${cri.pageNum}" />
-                                                        <input type="hidden" name="amount" id="amount"
-                                                            value="${cri.amount}" />
-                                                        <input type="hidden" name="type" id="type"
-                                                            value="${cri.type}" />
-                                                        <input type="hidden" name="keyword" id="keyword"
-                                                            value="${cri.keyword}" />
-                                                        <input type="hidden" name="t_num" id="t_num" value="${view.t_num}" />
+                                                        <input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}" />
+                                                        <input type="hidden" name="amount" id="amount" value="${cri.amount}" />
+                                                        <input type="hidden" name="type" id="type" value="${cri.type}" />
+                                                        <input type="hidden" name="keyword" id="keyword" value="${cri.keyword}" />
 
                                                         <div class="box-header with-border">
                                                             <h3 class="box-title mt-5">게시판</h3>

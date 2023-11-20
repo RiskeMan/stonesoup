@@ -80,9 +80,12 @@ public class MainController {
 	}
 	
 	@GetMapping("/board_edit")
-	public void board_edit(Criteria cri, @RequestParam("t_num") Long t_num, boardVO vo, Model model) {
+	public void board_edit(Criteria cri, @RequestParam("t_num") Long t_num, boardVO vo, Model model) throws Exception {
 		
-		log.info("넘버" + t_num);
+		// t_num 값이 어째서 안 넘어오는건지 이해가 안 된다...
+		// jsp에서 네임값을 주었고, 그 값을 form의 get형식으로 이쪽의 주소인 /main/board_edit 으로 보냈고, 
+		// 이쪽에선 받는 것만 하면 되는건데...
+//		log.info("넘버" + t_num);
 		
 //		boardVO view = mainService.board_view(t_num);
 //		
@@ -91,5 +94,12 @@ public class MainController {
 		
 	}
 	
+	@GetMapping("/board_delete")
+	public String btn_board_delete(@RequestParam("t_num") Long t_num) {
+		
+		mainService.board_delete(t_num);
+		
+		return "redirect:/main/board_list";
+	}
 	
 }

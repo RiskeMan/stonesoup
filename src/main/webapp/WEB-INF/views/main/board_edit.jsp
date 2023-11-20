@@ -44,19 +44,14 @@
 
                                                 <div class="box box-primary">
 
-                                                    <form role="form" method="post" action="/main/board_maker">
+                                                    <form role="form" method="post" action="/main/board_edit">
 
                                                         <!-- 이전 페이지 정보 -->
-                                                        <input type="hidden" name="pageNum" id="pageNum"
-                                                            value="${cri.pageNum}" />
-                                                        <input type="hidden" name="amount" id="amount"
-                                                            value="${cri.amount}" />
-                                                        <input type="hidden" name="type" id="type"
-                                                            value="${cri.type}" />
-                                                        <input type="hidden" name="keyword" id="keyword"
-                                                            value="${cri.keyword}" />
-                                                        <input type="hidden" name="t_num" id="t_num"
-                                                            value="${t_num}" />
+                                                        <input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}" />
+                                                        <input type="hidden" name="amount" id="amount" value="${cri.amount}" />
+                                                        <input type="hidden" name="type" id="type" value="${cri.type}" />
+                                                        <input type="hidden" name="keyword" id="keyword" value="${cri.keyword}" />
+                                                        <input type="hidden" name="t_num" id="t_num" value="${t_num}" />
 
                                                         <div class="box-body">
 

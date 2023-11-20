@@ -56,6 +56,12 @@ public class MainServiceImpl implements MainService {
 		mainMapper.board_edit(t_num);
 	}
 
+	@Override
+	public void board_delete(Long t_num) {
+		// TODO Auto-generated method stub
+		mainMapper.board_delete(t_num);
+	}
+
 
 	
 }
