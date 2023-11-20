@@ -50,6 +50,12 @@ public class MainServiceImpl implements MainService {
 		mainMapper.board_maker(vo);
 	}
 
+	@Override
+	public void board_edit(Long t_num) {
+		// TODO Auto-generated method stub
+		mainMapper.board_edit(t_num);
+	}
+
 
 	
 }

@@ -7,6 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.stonesoup.data.Criteria;
 import com.stonesoup.data.PageDTO;
@@ -70,13 +71,23 @@ public class MainController {
 		
 		mainService.board_Maker(vo);
 		
+		// 리스트가 아닌 자신의 글 번호 위치로 넘겨볼 계획.
+//		boardVO n_vo = 
+//		log.info("로그로그" + n_vo.getT_num());
 		
-		return "redirect:/main/board_list";
+		return "/board_list";
+//		return "redirect:/main/board_view?t_num=" + n_vo.getT_num();
 	}
 	
 	@GetMapping("/board_edit")
-	public void board_edit() {
+	public void board_edit(Criteria cri, @RequestParam("t_num") Long t_num, boardVO vo, Model model) {
 		
+		log.info("넘버" + t_num);
+		
+//		boardVO view = mainService.board_view(t_num);
+//		
+//		model.addAttribute("view", view);
+//		
 		
 	}
 	

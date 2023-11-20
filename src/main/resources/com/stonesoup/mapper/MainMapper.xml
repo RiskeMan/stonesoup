@@ -55,5 +55,14 @@
 		
 	</insert>
  -->
+ 
+ 	<update id="board_edit">
+ 		
+		UPDATE
+			SET T_NAME = #{t_name}, T_CONTENT = #{t_content}, T_M_DATE = SYSDATE
+		WHERE
+			T_NUM = #{t_num}
+ 		
+ 	</update>
 	
 </mapper>  
