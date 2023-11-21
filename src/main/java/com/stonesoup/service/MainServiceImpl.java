@@ -51,9 +51,9 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public void board_edit(Long t_num) {
+	public void board_edit(boardVO vo) {
 		// TODO Auto-generated method stub
-		mainMapper.board_edit(t_num);
+		mainMapper.board_edit(vo);
 	}
 
 	@Override

@@ -12,13 +12,13 @@
  				<trim prefix="or">
  					<choose>
  						<when test="type == 'T'.toString()">
- 							title like '%' || #{keyword} || '%'
+ 							t_name like '%' || #{keyword} || '%'
  						</when>
  						<when test="type == 'W'.toString()">
- 							writer like '%' || #{keyword} || '%'
+ 							member like '%' || #{keyword} || '%'
  						</when>
  						<when test="type == 'C'.toString()">
- 							content like '%' || #{keyword} || '%'
+ 							t_content like '%' || #{keyword} || '%'
  						</when>
  					</choose>
  				</trim>
@@ -55,5 +55,8 @@
 		WHERE <include refid="criteria"></include>
 		T_NUM > 0
 	</select>
+	
+	
+	
 
 </mapper>

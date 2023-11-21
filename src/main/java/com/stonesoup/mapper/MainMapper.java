@@ -10,7 +10,7 @@ public interface MainMapper {
 	
 	public void board_maker(boardVO vo);
 	
-	public void board_edit(Long t_num);
+	public void board_edit(boardVO vo);
 	
 	public void board_delete(Long t_num);
 	

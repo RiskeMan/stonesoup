@@ -44,26 +44,27 @@
 
                                                 <div class="box box-primary">
 
-                                                    <form role="form" method="post" action="/main/board_edit">
+                                                    <form role="form" method="post" id="form_data" action="/main/board_edit">
 
                                                         <!-- 이전 페이지 정보 -->
                                                         <input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}" />
                                                         <input type="hidden" name="amount" id="amount" value="${cri.amount}" />
                                                         <input type="hidden" name="type" id="type" value="${cri.type}" />
                                                         <input type="hidden" name="keyword" id="keyword" value="${cri.keyword}" />
-                                                        <input type="hidden" name="t_num" id="t_num" value="${t_num}" />
+
+                                                        <input type="hidden" name="t_num" id="t_num" value="${view.t_num}" />
 
                                                         <div class="box-body">
 
                                                             <div class="form-group">
                                                                 <label for="title">제목</label>
                                                                 <input type="text" class="form-control" name="t_name"
-                                                                    id="t_name" value="view.t_name">
+                                                                    id="t_name" value=${view.t_name}>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label for="writer">작성자</label>
                                                                 <input type="text" class="form-control" name="member"
-                                                                    id="member" value="view.member" readonly>
+                                                                    id="member" value=${view.member} readonly>
                                                             </div>
                                                             <div class="form-group">
                                                                 <label>내용</label>
@@ -98,21 +99,26 @@
 
 
                 <%@include file="/WEB-INF/views/comm/header.jsp" %>
-                    <!-- j쿼리 구문 -->
-                    <%@include file="/WEB-INF/views/comm/plugln.jsp" %>
-                        <script>
-                            /* 
-                                                    $(document).ready(function() {
-                            
-                                                        $("#btn_list").on("click", function() {
-                            
-                                                            location.href = "/main/board_list";
-                                                        });
-                            
-                                                    });
-                             */
+                <!-- j쿼리 구문 -->
+                <%@include file="/WEB-INF/views/comm/plugln.jsp" %>
+                <script>
 
-                        </script>
+                    let frm = $("#form_data"); // 폼 정보를 저장하는 변수.
+
+                    $(document).ready(function() {
+                        $("#btn_list").on("click", function() {
+
+                            rttr.addAttribute("pageNum", cri.getPageNum());
+                            rttr.addAttribute("amount", cri.getAmount());
+                            rttr.addAttribute("type", cri.getType());
+                            rttr.addAttribute("keyword", cri.getKeyword());
+
+                            frm.attr("action", "/main/board_list");
+                            frm.submit();
+                        })
+                    });
+
+                </script>
 
 
 

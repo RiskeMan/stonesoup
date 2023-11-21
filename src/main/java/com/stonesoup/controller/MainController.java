@@ -5,9 +5,11 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.stonesoup.data.Criteria;
 import com.stonesoup.data.PageDTO;
@@ -39,15 +41,16 @@ public class MainController {
 		
 		int count = mainService.countBoard(cri);
 		
+		// 2) 페이징 기능 및 검색기능. - PageDTO
+		int total = mainService.countBoard(cri); // 테이블의 데이터 전체 갯수.
+		
 		PageDTO pageDTO = new PageDTO(cri, count);
 		model.addAttribute("pageMaker", pageDTO);
 		
 	}
 	
 	@GetMapping("/board_view")
-	public String board_view(Criteria cri, Long t_num, Model model) {
-		
-		
+	public String board_view(@ModelAttribute("cri") Criteria cri, @RequestParam("t_num") Long t_num, Model model) {
 		
 		// 조회수 증가 구문
 		mainService.board_t_views_up(t_num);
@@ -75,24 +78,33 @@ public class MainController {
 //		boardVO n_vo = 
 //		log.info("로그로그" + n_vo.getT_num());
 		
-		return "/board_list";
+		return "redirect:/main/board_list";
 //		return "redirect:/main/board_view?t_num=" + n_vo.getT_num();
 	}
 	
 	@GetMapping("/board_edit")
-	public void board_edit(Criteria cri, @RequestParam("t_num") Long t_num, boardVO vo, Model model) throws Exception {
+	public void board_edit(@ModelAttribute("cri") Criteria cri, @RequestParam("t_num") Long t_num, boardVO vo, Model model) throws Exception {
 		
-		// t_num 값이 어째서 안 넘어오는건지 이해가 안 된다...
-		// jsp에서 네임값을 주었고, 그 값을 form의 get형식으로 이쪽의 주소인 /main/board_edit 으로 보냈고, 
-		// 이쪽에선 받는 것만 하면 되는건데...
-//		log.info("넘버" + t_num);
+		log.info("넘버" + t_num);
 		
-//		boardVO view = mainService.board_view(t_num);
-//		
-//		model.addAttribute("view", view);
-//		
+		boardVO view = mainService.board_view(t_num);
 		
+		model.addAttribute("view", view);
 	}
+	
+	@PostMapping("/board_edit")
+	public String board_edit(@ModelAttribute("cri") Criteria cri, @RequestParam("t_num") Long t_num, boardVO vo, RedirectAttributes rttr) {
+		
+		mainService.board_edit(vo);
+		
+		rttr.addAttribute("pageNum", cri.getPageNum());
+		rttr.addAttribute("amount", cri.getAmount());
+		rttr.addAttribute("type", cri.getType());
+		rttr.addAttribute("keyword", cri.getKeyword());
+		
+		return "redirect:/main/board_list";
+	}
+	
 	
 	@GetMapping("/board_delete")
 	public String btn_board_delete(@RequestParam("t_num") Long t_num) {

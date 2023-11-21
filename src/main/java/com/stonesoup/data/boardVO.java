@@ -7,7 +7,7 @@ import lombok.Data;
 @Data
 public class boardVO {
 /*
-CREATE TABLE BODER_DATA (
+CREATE TABLE BOARD_DATA (
     T_NUM       NUMBER,                     -- 글 번호
     T_NAME      VARCHAR2(200)   NOT NULL,   -- 제목
     T_CONTENT   VARCHAR2(4000)  NOT NULL,   -- 내용
@@ -16,7 +16,8 @@ CREATE TABLE BODER_DATA (
     T_M_DATE    DATE            DEFAULT SYSDATE,    -- 수정일
     T_VIEWS     NUMBER           DEFAULT 0,         -- 조회수
     CONSTRAINT  PK_BODER_DATA        PRIMARY KEY(T_NUM)
-);
+);t_num, t_name, t_content, member, t_date, t_m_date, t_views
+	
  */
 	// , , , , , , t_views
 	

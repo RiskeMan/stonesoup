@@ -46,7 +46,7 @@ BOAER
                                             <div class="box-body">
 
                                                 <div class="box box-primary">
-                                                    <form role="form" method="get" action="/main/board_edit">
+                                                    <form role="form" method="get" id="form_data" action="/main/board_edit">
 
                                                         <!-- 이전 페이지 정보 -->
                                                         <input type="hidden" name="pageNum" id="pageNum" value="${cri.pageNum}" />
@@ -130,16 +130,24 @@ BOAER
 
                             $(document).ready(function () {
 
+                                let frm = $("#form_data"); // 폼 정보를 저장하는 변수.
+
                                 $("#btn_board_edit").on("click", function() {
-                                    location.href = "/main/board_edit";
+                                    // location.href = "/main/board_edit";
+                                    frm.attr("action", "/main/board_edit");
+                                    frm.submit();
                                 })
 
                                 $("#btn_board_list").on("click", function () {
-                                    location.href = "/main/board_list";
+                                    // location.href = "/main/board_list";
+                                    frm.attr("action", "/main/board_list");
+                                    frm.submit();
                                 });
 
                                 $("#btn_board_delete").on("click", function () {
-                                    location.href = "/main/board_delete";
+                                    // location.href = "/main/board_delete";
+                                    frm.attr("action", "/main/board_delete");
+                                    frm.submit();
                                 });
 
 

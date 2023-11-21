@@ -56,12 +56,12 @@
 	</insert>
  -->
  
- 	<update id="board_edit">
+ 	<update id="board_edit" parameterType="com.stonesoup.data.boardVO">
  		
 		UPDATE
 			BOARD_DATA
 		SET
-			SET T_NAME = #{t_name}, T_CONTENT = #{t_content}, T_M_DATE = SYSDATE
+			T_NAME = #{t_name}, T_CONTENT = #{t_content}, T_M_DATE = SYSDATE
 		WHERE
 			T_NUM = #{t_num}
  		

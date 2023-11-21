@@ -124,7 +124,8 @@
                                                     <input type="hidden" name="amount" id="amount" value="${pageMaker.cri.amount}" />
                                                     <input type="hidden" name="type" id="type" value="${pageMaker.cri.type}" />
                                                     <input type="hidden" name="keyword" id="keyword" value="${pageMaker.cri.keyword}" />
-                                                    <input type="hidden" name="bno" id="bno" />
+
+                                                    <input type="hidden" name="t_num" id="t_num" value="" />
                                                 </form>
                                             </div>
                                         </div>
@@ -183,10 +184,17 @@
                 
                 e.preventDefault();
                 
-                let t_num = $(this).data("t_num");
+                let t_num = "/main/board_view?t_num=" + $(this).data("t_num");
                 // console.log("작동위치 + t_num", t_num)
 
-                window.location.href = "/main/board_view?t_num=" + t_num;
+                // 히든의 t_num에 클릭한 구문의 값을 넣기.
+                $("#t_num").val($(this).data("t_num"))
+                console.log($("#t_num").val());
+                actionForm = $("#actionForm");
+
+                // location.href = "/main/board_view?t_num=" + t_num;
+                actionForm.attr("action", t_num);
+                actionForm.submit();
             })
 
             // 글쓰기 클릭 a class="btn btn-primary"
