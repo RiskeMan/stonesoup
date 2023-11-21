@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.stonesoup.data.Criteria;
-import com.stonesoup.data.boardVO;
+import com.stonesoup.data.BoardVO;
 import com.stonesoup.mapper.MainMapper;
 import com.stonesoup.mapper.PagingMapper;
 
@@ -21,7 +21,7 @@ public class MainServiceImpl implements MainService {
 	private final MainMapper mainMapper;
 
 	@Override
-	public List<boardVO> board_list(Criteria cri) {
+	public List<BoardVO> board_list(Criteria cri) {
 		// TODO Auto-generated method stub
 		return pagingMapper.board_list(cri);
 	}
@@ -39,19 +39,19 @@ public class MainServiceImpl implements MainService {
 	}
 
 	@Override
-	public boardVO board_view(Long t_num) {
+	public BoardVO board_view(Long t_num) {
 		// TODO Auto-generated method stub
 		return mainMapper.board_view(t_num);
 	}
 
 	@Override
-	public void board_Maker(boardVO vo) {
+	public void board_Maker(BoardVO vo) {
 		// TODO Auto-generated method stub
 		mainMapper.board_maker(vo);
 	}
 
 	@Override
-	public void board_edit(boardVO vo) {
+	public void board_edit(BoardVO vo) {
 		// TODO Auto-generated method stub
 		mainMapper.board_edit(vo);
 	}

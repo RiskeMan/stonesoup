@@ -5,7 +5,7 @@ import java.util.Date;
 import lombok.Data;
 
 @Data
-public class boardVO {
+public class BoardVO {
 /*
 CREATE TABLE BOARD_DATA (
     T_NUM       NUMBER,                     -- 글 번호

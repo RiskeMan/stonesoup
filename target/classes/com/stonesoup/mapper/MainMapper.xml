@@ -15,7 +15,7 @@
 			
 	</update>
 	
-	<select id="board_view" resultType="com.stonesoup.data.boardVO">
+	<select id="board_view" resultType="com.stonesoup.data.BoardVO">
 	
 		SELECT
 			T_NUM, T_NAME, T_CONTENT, MEMBER, T_DATE, T_M_DATE, T_VIEWS
@@ -26,7 +26,7 @@
 	
 	</select>
 	
-	<insert id="board_maker" parameterType="com.stonesoup.data.boardVO">
+	<insert id="board_maker" parameterType="com.stonesoup.data.BoardVO">
 		
 		INSERT INTO
 			BOARD_DATA(T_NUM, T_NAME, T_CONTENT, MEMBER, T_DATE, T_M_DATE)
@@ -56,7 +56,7 @@
 	</insert>
  -->
  
- 	<update id="board_edit" parameterType="com.stonesoup.data.boardVO">
+ 	<update id="board_edit" parameterType="com.stonesoup.data.BoardVO">
  		
 		UPDATE
 			BOARD_DATA

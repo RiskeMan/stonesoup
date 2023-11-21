@@ -26,32 +26,35 @@
  		</trim>
  	</sql>
 
-	<!-- CDATA섹션 -->
-	<select id="board_list" resultType="com.stonesoup.data.boardVO" parameterType="com.stonesoup.data.Criteria">
+	<!-- CDATA섹션 -->	<!-- 집에서 역순이 안 되는 문제 발생. -->
+	<select id="board_list" parameterType="com.stonesoup.data.Criteria" resultType="com.stonesoup.data.BoardVO">
 
 		
 		<![CDATA[
 			select
     			t_num, t_name, t_content, member, t_date, t_m_date, t_views
 			from (
-				select /*+INDEX_DESC(BOARD_DATA PK_BOARD_DATA)*/
-				rownum rn, t_num, t_name, t_content, member, t_date, t_m_date, t_views
-			from BOARD_DATA
-			where
+				select /*+INDEX_DESC(board pk_board2)*/
+					rownum rn, t_num, t_name, t_content, member, t_date, t_m_date, t_views
+				from
+					BOARD_DATA
+				where
 		]]>
 
 		<include refid="criteria"></include>
 
 		<![CDATA[
-			rownum <= #{pageNum} * #{amount}
-		)
-		where rn > (#{pageNum} -1) * #{amount}]]>
+					rownum <= #{pageNum} * #{amount}
+			)
+			where
+				rn > (#{pageNum} -1) * #{amount}
+		]]>
 
 	</select>
 
 	<select id="countBoard" resultType="int">
 		SELECT COUNT(*) 
-		FROM BOARD_DATA 
+		FROM BOARD_DATA
 		WHERE <include refid="criteria"></include>
 		T_NUM > 0
 	</select>

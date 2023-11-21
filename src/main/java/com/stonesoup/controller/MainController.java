@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.stonesoup.data.Criteria;
 import com.stonesoup.data.PageDTO;
-import com.stonesoup.data.boardVO;
+import com.stonesoup.data.BoardVO;
 import com.stonesoup.service.MainService;
 
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class MainController {
 	@GetMapping("/board_list")
 	public void board_list(Criteria cri, Model model) {
 		
-		List<boardVO> list = mainService.board_list(cri);
+		List<BoardVO> list = mainService.board_list(cri);
 		model.addAttribute("list", list);
 		
 		int count = mainService.countBoard(cri);
@@ -57,7 +57,7 @@ public class MainController {
 //		log.info("조회수");
 		
 		// 페이지 조회 구문
-		boardVO view = mainService.board_view(t_num);
+		BoardVO view = mainService.board_view(t_num);
 		
 		model.addAttribute("view", view);
 		
@@ -70,12 +70,12 @@ public class MainController {
 	}
 	
 	@PostMapping("/board_maker")
-	public String board_Maker(boardVO vo) {
+	public String board_Maker(BoardVO vo) {
 		
 		mainService.board_Maker(vo);
 		
 		// 리스트가 아닌 자신의 글 번호 위치로 넘겨볼 계획.
-//		boardVO n_vo = 
+//		BoardVO n_vo = 
 //		log.info("로그로그" + n_vo.getT_num());
 		
 		return "redirect:/main/board_list";
@@ -83,17 +83,17 @@ public class MainController {
 	}
 	
 	@GetMapping("/board_edit")
-	public void board_edit(@ModelAttribute("cri") Criteria cri, @RequestParam("t_num") Long t_num, boardVO vo, Model model) throws Exception {
+	public void board_edit(@ModelAttribute("cri") Criteria cri, @RequestParam("t_num") Long t_num, BoardVO vo, Model model) throws Exception {
 		
 		log.info("넘버" + t_num);
 		
-		boardVO view = mainService.board_view(t_num);
+		BoardVO view = mainService.board_view(t_num);
 		
 		model.addAttribute("view", view);
 	}
 	
 	@PostMapping("/board_edit")
-	public String board_edit(@ModelAttribute("cri") Criteria cri, @RequestParam("t_num") Long t_num, boardVO vo, RedirectAttributes rttr) {
+	public String board_edit(@ModelAttribute("cri") Criteria cri, @RequestParam("t_num") Long t_num, BoardVO vo, RedirectAttributes rttr) {
 		
 		mainService.board_edit(vo);
 		

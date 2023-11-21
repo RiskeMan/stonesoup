@@ -11,7 +11,7 @@ import lombok.extern.log4j.Log4j;
 @Log4j
 @RequiredArgsConstructor
 @RequestMapping("/hello/*")
-public class memberController {
+public class MemberController {
 
 	@GetMapping("/join")
 	public void join() {
