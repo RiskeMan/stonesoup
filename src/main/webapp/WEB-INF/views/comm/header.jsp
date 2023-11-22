@@ -11,7 +11,7 @@
                     <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
                 <li>
-                    <a class="nav-link" href="#">로그인</a>
+                    <a class="nav-link" href="/hello/login">로그인</a>
                 </li>
                 <li>
                     <a class="nav-link" href="/hello/join">회원가입</a>

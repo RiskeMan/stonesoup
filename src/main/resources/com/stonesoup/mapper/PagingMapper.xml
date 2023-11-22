@@ -34,7 +34,7 @@
 			select
     			t_num, t_name, t_content, member, t_date, t_m_date, t_views
 			from (
-				select /*+INDEX_DESC(board pk_board2)*/
+				select /*+INDEX_DESC(BOARD_DATA PK_BOARD_DATA)*/
 					rownum rn, t_num, t_name, t_content, member, t_date, t_m_date, t_views
 				from
 					BOARD_DATA

@@ -15,7 +15,6 @@
                 <title>Cover Template Bootstrap v4.6</title>
 
 
-
                 <!-- css -->
                 <%@include file="/WEB-INF/views/comm/css.jsp" %>
 
@@ -45,13 +44,14 @@
 
                                                 <div class="box-body">
 
-                                                    <form class="form-signin">
+                                                    <form class="form-signin" role="form" method="post" id="form_data" action="/hello/join">
 
-                                                        <div class="form-label-group">
+                                                        <div class="form-label-group" style="text-align: left;">
                                                             <div style="text-align: left;"><label
                                                                     for="member_id">아이디</label></div>
-                                                            <input type="text" id="member_id" name="member_id"
-                                                                class="form-control" placeholder="아이디">
+                                                            <input type="text" id="member_id" name="member_id" style="display: inline;"
+                                                                class="form-control col-9" placeholder="아이디">
+                                                                <button type="button" id="btn_id_check" class="btn btn-primary col-2">중복 확인</button>
                                                         </div>
                                                         <div class="form-label-group">
                                                             <div style="text-align: left;"><label
@@ -76,14 +76,14 @@
                                                                     for="member_email">이메일주소</label></div>
                                                             <input type="email" id="member_email" name="member_email" style="display: inline;"
                                                                 class="form-control col-9" placeholder="이메일주소">
-                                                                <button type="button" class="btn btn-secondary btn-sm col-2">이메일 인증</button>
+                                                                <button type="button" class="btn btn-primary col-2">이메일 인증</button>
                                                         </div>
                                                         <div class="form-label-group" style="text-align: left;">
                                                             <div style="text-align: left;"><label
                                                                     for="member_email">인증 확인</label></div>
-                                                            <input type="email" id="member_email" name="member_email" style="display: inline;"
+                                                            <input type="text" id="member_email" name="member_email" style="display: inline;"
                                                                 class="form-control col-9" placeholder="이메일주소">
-                                                                <button type="button" class="btn btn-secondary btn-sm col-2">확인</button>
+                                                                <button type="button" class="btn btn-primary col-2">확인</button>
                                                         </div>
                                                         <div class="form-label-group" style="text-align: left;">
                                                             <div style="text-align: left;"><label
@@ -92,7 +92,7 @@
                                                                 name="member_zipcode" class="form-control col-9"
                                                                 placeholder="우편번호">
                                                                 <button type="button" onclick="sample2_execDaumPostcode()"
-                                                                class="btn btn-secondary btn-sm col-2">우편번호 찾기</button>
+                                                                class="btn btn-primary col-2">검색</button>
                                                         </div>
                                                         <div class="form-label-group">
                                                             <div style="text-align: left;"><label
@@ -115,7 +115,7 @@
                                                         <div class="form-label-group">
                                                             <div style="text-align: left;"><label
                                                                     for="member_phone">전화번호</label></div>
-                                                            <input type="text" id="member_phone" name="member_phone"
+                                                            <input type="text" id="member_phone" name=""
                                                                 class="form-control" placeholder="전화번호">
                                                         </div>
                                                         <br>
@@ -126,7 +126,7 @@
                                                             </label>
                                                         </div>
                                                         <button class="btn btn-lg btn-primary btn-block"
-                                                            type="submit">Sign in</button>
+                                                            type="submit">확인</button>
                                                     </form>
 
                                                 </div>
@@ -151,8 +151,43 @@
                     <%@include file="/WEB-INF/views/comm/plugln.jsp" %>
                         <script>
 
+                            // 아이디 체크 유무 확인용 변수값.
+                            
                             $(document).ready(function () {
 
+                                let idCheck_ok = false;
+
+                                // 아이디 입력값 유무 체크 구문
+                                $("#btn_id_check").on("click", function() {
+                                    if($("#member_id").val() == "") {
+                                        alert("아이디를 입력해 주세요.");
+                                        $("#member_id").focus();
+                                        return
+                                    }
+
+                                    // 아이디 중복체크
+                                    $.ajax({
+                                        url: '/hello/idcheck',
+                                        type: 'get',
+                                        data: {member_id : $("#member_id").val()},
+                                        dataType: 'text',
+                                        success: function(result) {
+                                            if(result == "true") {
+                                                alert("사용 가능한 아이디 입니다.")
+                                                idCheck_ok = true;
+                                                $("#member_pw").focus();
+                                            }else {
+                                                alert("중복되는 아이디 입니다. 새로운 아이디를 입력해 주세요.")
+                                                idCheck_ok = false;
+                                                $("#member_id").val(""); // 아이디 텍스트박스를 값을 지움
+                                                $("#member_id").focus(); // 포커스
+                                            }
+                                        }
+                                    });
+
+                                })
+
+                                // 비밀번호 확인.
 
 
                             });
