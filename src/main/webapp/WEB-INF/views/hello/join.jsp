@@ -115,7 +115,7 @@
                                                         <div class="form-label-group">
                                                             <div style="text-align: left;"><label
                                                                     for="member_phone">전화번호</label></div>
-                                                            <input type="text" id="member_phone" name=""
+                                                            <input type="text" id="member_phone" name="member_phone"
                                                                 class="form-control" placeholder="전화번호">
                                                         </div>
                                                         <br>
@@ -187,9 +187,11 @@
 
                                 })
 
+							
+                                
+                                
+
                                 // 비밀번호 확인.
-
-
                             });
 
 

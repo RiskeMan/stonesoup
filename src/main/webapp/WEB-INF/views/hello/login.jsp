@@ -51,13 +51,13 @@
                                                             <div style="text-align: left;"><label
                                                                     for="member_id">아이디</label></div>
                                                             <input type="text" id="member_id" name="vo.member_id"
-                                                                class="form-control" placeholder="아이디">
+                                                                class="form-control" placeholder="아이디" value="user000">
                                                         </div>
                                                         <div class="form-label-group">
                                                             <div style="text-align: left;"><label
                                                                     for="member_pw">비밀번호</label></div>
                                                             <input type="password" id="member_pw" name="vo.member_pw"
-                                                                class="form-control" placeholder="비밀번호">
+                                                                class="form-control" placeholder="비밀번호" value="1234">
                                                         </div>
                                                         <br><br>
 

@@ -39,6 +39,8 @@ public class MemberController {
 		// 비밀번호 암호화 구문
 		vo.setMember_pw(passwordEncoder.encode(vo.getMember_pw()));
 		
+		log.info("브이오" + vo);
+		
 		// 회원가입 데이터값 테이블에 입력
 		memberServoice.join(vo);
 		
