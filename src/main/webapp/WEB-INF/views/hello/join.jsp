@@ -76,14 +76,14 @@
                                                                     for="member_email">이메일주소</label></div>
                                                             <input type="email" id="member_email" name="member_email" style="display: inline;"
                                                                 class="form-control col-9" placeholder="이메일주소">
-                                                                <button type="button" class="btn btn-primary col-2">이메일 인증</button>
+                                                                <button type="button" id="but_email_add" class="btn btn-primary col-2">이메일 인증</button>
                                                         </div>
                                                         <div class="form-label-group" style="text-align: left;">
                                                             <div style="text-align: left;"><label
                                                                     for="member_email">인증 확인</label></div>
-                                                            <input type="text" id="member_email" name="member_email" style="display: inline;"
+                                                            <input type="text" id="member_email_ok" name="member_email_ok" style="display: inline;"
                                                                 class="form-control col-9" placeholder="이메일주소">
-                                                                <button type="button" class="btn btn-primary col-2">확인</button>
+                                                                <button type="button" id="but_email_ok" class="btn btn-primary col-2">확인</button>
                                                         </div>
                                                         <div class="form-label-group" style="text-align: left;">
                                                             <div style="text-align: left;"><label
@@ -151,10 +151,10 @@
                     <%@include file="/WEB-INF/views/comm/plugln.jsp" %>
                         <script>
 
-                            // 아이디 체크 유무 확인용 변수값.
                             
                             $(document).ready(function () {
 
+                                // 아이디 체크 유무 확인용 변수값.
                                 let idCheck_ok = false;
 
                                 // 아이디 입력값 유무 체크 구문
@@ -187,9 +187,35 @@
 
                                 })
 
-							
-                                
-                                
+                                // 메일인증 요청
+                                $("#but_email_add").on("click", function() {
+                                    if($("#member_email").val() == "") {
+                                        alert("이메일을 입력해 주세요.");
+                                        $("#member_email").focus();
+                                        return
+                                    }
+
+                                    $.ajax({
+                                        url: '/email/add_code',
+                                        type: 'get',
+                                        data: {to_member_mail: $("#member_email").val()},
+                                        dataType: 'text',
+                                        success: function(result) {
+                                            if(result == 'success') {
+                                                console.log($("#member_email").val());
+                                                alert("인증메일이 발송되었습니다.")
+                                                $("#member_email_ok").focus();
+                                            }
+                                        }
+                                    })
+
+                                })
+
+                                // 이메일 체크 확인용 번수값
+                                let emailCheck_ok = false;
+
+                                // 메일인증 확인
+                                $("#but_email_ok")
 
                                 // 비밀번호 확인.
                             });

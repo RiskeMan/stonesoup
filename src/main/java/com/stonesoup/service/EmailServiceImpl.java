@@ -1,16 +1,53 @@
 package com.stonesoup.service;
 
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.Message.RecipientType;
+
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-import com.stonesoup.mapper.EmailMapper;
+import com.stonesoup.data.EmailDTO;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
 
 @Service
 @RequiredArgsConstructor
+@Log4j
 public class EmailServiceImpl implements EmailService {
+	
+	// email-config.xml파일로 bean을 주입하는 작업.
+	private final JavaMailSender mailSender;
 
-	private final EmailMapper emailMapper;
+	@Override
+	public void sendMail(EmailDTO dto, String add_code) {
+		
+		// 오류 있음. 동작확인하기
+		System.out.println("동작확인1");
+		
+		// 메일 구성정보를 담당하는 객체.
+		MimeMessage mimeMessage = mailSender.createMimeMessage();
+		
+		System.out.println("동작확인2");
+		try {
+			System.out.println("동작확인3");
+			// 수신자 메일주소
+			mimeMessage.addRecipient(RecipientType.TO, new InternetAddress(dto.getTo_member_mail()));
+			// 보내는 사람(발신자 메일주소, 발신자 이름)
+			mimeMessage.addFrom(new InternetAddress []{new InternetAddress(dto.getServer_mail(), dto.getServer_neme())});
+			// 메일 제목
+			mimeMessage.setSubject(dto.getMail_title(), "utf-8");
+			// 본문내용
+			mimeMessage.setText(add_code, "utf-8");
+			System.out.println("동작확인4");
+
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
 	
 	
 	
