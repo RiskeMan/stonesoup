@@ -82,7 +82,7 @@
                                                             <div style="text-align: left;"><label
                                                                     for="member_email">인증 확인</label></div>
                                                             <input type="text" id="member_email_ok" name="member_email_ok" style="display: inline;"
-                                                                class="form-control col-9" placeholder="이메일주소">
+                                                                class="form-control col-9" placeholder="인증 코드">
                                                                 <button type="button" id="but_email_ok" class="btn btn-primary col-2">확인</button>
                                                         </div>
                                                         <div class="form-label-group" style="text-align: left;">
@@ -125,8 +125,8 @@
                                                                 <span>Remember me</span>
                                                             </label>
                                                         </div>
-                                                        <button class="btn btn-lg btn-primary btn-block"
-                                                            type="submit">확인</button>
+                                                        <button class="btn btn-lg btn-primary btn-block" id="join_ok"
+                                                            type="button">확인</button>
                                                     </form>
 
                                                 </div>
@@ -189,6 +189,8 @@
 
                                 // 메일인증 요청
                                 $("#but_email_add").on("click", function() {
+
+                                    // 메일 입력값 유뮤 체크
                                     if($("#member_email").val() == "") {
                                         alert("이메일을 입력해 주세요.");
                                         $("#member_email").focus();
@@ -214,8 +216,47 @@
                                 // 이메일 체크 확인용 번수값
                                 let emailCheck_ok = false;
 
-                                // 메일인증 확인
-                                $("#but_email_ok")
+                                // 메일인증 확인 id="member_email_ok", id="but_email_ok"
+                                $("#but_email_ok").on("click", function() {
+
+                                    if($("#member_email_ok") == "") {
+                                        alert("인증코드를 입력해 주세요.");
+                                        $("#member_email_ok").focus();
+                                        return;
+                                    }
+
+                                    // 인증확인
+                                    $.ajax({
+                                        url: '/email/add_code_ok',
+                                        type: 'get',
+                                        data: {input_add_code: $("#member_email_ok").val()},
+                                        dataType: 'text',
+                                        success: function(result) {
+                                            if(result == 'success') {
+                                                alert("메일 인증 성공");
+                                                emailCheck_ok = trie;
+                                            }else if(result == 'fail') {
+                                                alert("인증코드가 틀립니다. 다시 입력해 주세요.");
+                                                $("#member_email_ok").val("");
+                                                $("#member_email_ok").focus();
+                                                emailCheck_ok = false;
+                                            }else if(result == 'request') {
+                                                alert("메일인증 요청을 다시 해주세요.");
+                                                $("#member_email_ok").val("");
+                                                $("#but_email_ok").focus();
+                                                emailCheck_ok = false;
+                                            }
+                                        }
+                                    });
+
+                                })
+
+                                // 회원가입 유효성 검사
+                                // id="join_ok", idCheck_ok, id="member_pw", id="member_pw_re", emailCheck_ok
+                                $("#join_ok").on("click", function() {
+
+                                    if 
+                                })
 
                                 // 비밀번호 확인.
                             });

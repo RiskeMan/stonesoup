@@ -29,7 +29,6 @@
 	<!-- CDATA섹션 -->	<!-- 집에서 역순이 안 되는 문제 발생. -->
 	<select id="board_list" parameterType="com.stonesoup.data.Criteria" resultType="com.stonesoup.data.BoardVO">
 
-		
 		<![CDATA[
 			select
     			t_num, t_name, t_content, member, t_date, t_m_date, t_views

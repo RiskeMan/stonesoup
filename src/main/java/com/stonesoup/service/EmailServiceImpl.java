@@ -2,7 +2,7 @@ package com.stonesoup.service;
 
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
-import javax.mail.Message.RecipientType;
+import javax.mail.internet.MimeMessage.RecipientType;
 
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
@@ -24,25 +24,27 @@ public class EmailServiceImpl implements EmailService {
 	public void sendMail(EmailDTO dto, String add_code) {
 		
 		// 오류 있음. 동작확인하기
-		System.out.println("동작확인1");
+		System.out.println("dto 동작확인 : " + dto);
+		System.out.println("dto 동작확인 ??");
+		
+		System.out.println("add_code 동작확인 : " + add_code);
+		System.out.println("add_code 동작확인 ??");
 		
 		// 메일 구성정보를 담당하는 객체.
 		MimeMessage mimeMessage = mailSender.createMimeMessage();
 		
-		System.out.println("동작확인2");
 		try {
-			System.out.println("동작확인3");
-			// 수신자 메일주소
+			// 받는사람의 메일주소
 			mimeMessage.addRecipient(RecipientType.TO, new InternetAddress(dto.getTo_member_mail()));
 			// 보내는 사람(발신자 메일주소, 발신자 이름)
-			mimeMessage.addFrom(new InternetAddress []{new InternetAddress(dto.getServer_mail(), dto.getServer_neme())});
-			// 메일 제목
+			mimeMessage.addFrom(new InternetAddress[] {new InternetAddress(dto.getServer_mail(), dto.getServer_neme())});
+			//메일제목
 			mimeMessage.setSubject(dto.getMail_title(), "utf-8");
-			// 본문내용
+			//본문내용
 			mimeMessage.setText(add_code, "utf-8");
-			System.out.println("동작확인4");
-
-
+			
+			mailSender.send(mimeMessage);
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

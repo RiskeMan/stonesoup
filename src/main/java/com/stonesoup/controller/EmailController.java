@@ -23,7 +23,7 @@ public class EmailController {
 	private final EmailService emailService;
 	
 	// 메일 인증코드 요청 구문
-	@GetMapping("add_code")
+	@GetMapping("/add_code")
 	public ResponseEntity<String> authSend(EmailDTO dto, HttpSession session) {
 		
 		ResponseEntity<String> entity = null;
@@ -35,7 +35,7 @@ public class EmailController {
 		}
 		
 		// 인증코드 확인
-		log.info("인증코드 콘솔에서 확인 : " + add_code);
+//		log.info("인증코드 콘솔에서 확인 : " + add_code);
 		
 		// 비교 확인 목적을 위해 인증코드를 세션형태로 미리 저장해 둔다.
 		session.setAttribute("add_code", add_code);
@@ -44,8 +44,8 @@ public class EmailController {
 			log.info("동작확인");
 			// 메일 보내기
 			emailService.sendMail(dto, add_code);
-			log.info("동작확인 dto" + dto);
-			log.info("동작확인 add" + add_code);
+//			log.info("동작확인 dto" + dto);
+//			log.info("동작확인 add" + add_code);
 			entity = new ResponseEntity<String>("success", HttpStatus.OK);
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -58,7 +58,25 @@ public class EmailController {
 	}
 	
 	// 인증코드 확인
-//	@GetMapping("/")
+	@GetMapping("/add_code_ok")
+	public ResponseEntity<String> add_code_ok(String add_code, HttpSession session) {
+		
+		ResponseEntity<String> entity = null;
+		
+		// 미리 세션에 저장해 둔 add_code값을 가져와 비교하는 구문.
+		if(session.getAttribute("add_code") != null) {
+			if(add_code.equals(session.getAttribute("add_code"))) {
+				entity = new ResponseEntity<String>("success", HttpStatus.OK);
+			}else {
+				entity = new ResponseEntity<String>("fail", HttpStatus.OK);
+			}
+		}else {
+			// session의 add_code의 값이 null일때.
+			entity = new ResponseEntity<String>("request", HttpStatus.OK);
+		}
+		
+		return entity;
+	}
 	
 	
 	
