@@ -23,4 +23,27 @@
 			MEMBER_ID = #{member_id}
 	
 	</select>
+	
+	<select id="login" parameterType="com.stonesoup.data.LoginDTO" resultType="com.stonesoup.data.MemberVO">
+		
+		SELECT
+			MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL, MEMBER_ZIPCODE, MEMBER_ADDR, MEMBER_DEADDR, MEMBER_PHONE, MEMBER_POINT, MEMBER_LASTLOGIN, MEMBER_DATESUB, MEMBER_UPDATEDATE
+		FROM
+			MEMBER
+		WHERE
+			MEMBER_ID = #{member_id}
+		
+	</select>
+	
+	<update id="">
+	
+		UPDATE
+			MEMBER
+		SET
+			MEMBER_LASTLOGIN = SYSDATE
+		WHERE
+			MEMBER_ID = #{member_id}
+	
+	</update>
+	
 </mapper>

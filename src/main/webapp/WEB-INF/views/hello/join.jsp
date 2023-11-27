@@ -87,7 +87,7 @@
                                                         </div>
                                                         <div class="form-label-group" style="text-align: left;">
                                                             <div style="text-align: left;"><label
-                                                                for="member_name">우편번호</label></div>
+                                                                for="sample2_postcode">우편번호</label></div>
                                                             <input type="text" id="sample2_postcode" style="display: inline;"
                                                                 name="member_zipcode" class="form-control col-9"
                                                                 placeholder="우편번호">
@@ -229,12 +229,12 @@
                                     $.ajax({
                                         url: '/email/add_code_ok',
                                         type: 'get',
-                                        data: {input_add_code: $("#member_email_ok").val()},
+                                        data: {add_code: $("#member_email_ok").val()},
                                         dataType: 'text',
                                         success: function(result) {
                                             if(result == 'success') {
                                                 alert("메일 인증 성공");
-                                                emailCheck_ok = trie;
+                                                emailCheck_ok = true;
                                             }else if(result == 'fail') {
                                                 alert("인증코드가 틀립니다. 다시 입력해 주세요.");
                                                 $("#member_email_ok").val("");
@@ -251,11 +251,50 @@
 
                                 })
 
+                                
+
                                 // 회원가입 유효성 검사
                                 // id="join_ok", idCheck_ok, id="member_pw", id="member_pw_re", emailCheck_ok
                                 $("#join_ok").on("click", function() {
-
-                                    if 
+                                    if(idCheck_ok == false) {
+                                        alert("아이디 중복검사를 해 주세요.");
+                                        $("#member_id").focus();
+                                        return;
+                                    }if($("#member_pw").val() == "") {
+                                        alert("비밀번호를 입력해 주세요.");
+                                        $("#member_pw").focus();
+                                        return;
+                                    }if($("#member_pw").val() != $("#member_pw_re").val()) {
+                                        alert("비밀번호를 다시 확인해 주세요.");
+                                        $("#member_pw").focus();
+                                        return;
+                                    }if($("#member_name").val() == "") {
+                                        alert("이름을 입력해 주세요.");
+                                        $("#member_name").focus();
+                                        return;
+                                    }if(emailCheck_ok == false) {
+                                        alert("이메일 인증검사를 해 주세요.")
+                                        $("#member_email").focus();
+                                        return;
+                                    }if($("#sample2_postcode").val == "") {
+                                        alert("주소를 입력해 주세요.");
+                                        $("#sample2_postcode").focus();
+                                        return;
+                                    }if($("#sample2_address").val == "") {
+                                        alert("주소를 입력해 주세요.");
+                                        $("#sample2_address").focus();
+                                        return;
+                                    }if($("#sample2_detailAddress").val == "") {
+                                        alert("주소를 입력해 주세요.");
+                                        $("#sample2_detailAddress").focus();
+                                        return;
+                                    }if($("#member_phone").val() == "") {
+                                        alert("전화번호를 입력해 주세요.");
+                                        $("#member_phone").focus();
+                                        return;
+                                    }
+                                    alert("회원가입을 축하드립니다.")
+                                    $("#form_data").submit();
                                 })
 
                                 // 비밀번호 확인.

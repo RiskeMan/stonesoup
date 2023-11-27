@@ -1,5 +1,7 @@
 package com.stonesoup.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.stonesoup.data.LoginDTO;
 import com.stonesoup.data.MemberVO;
 import com.stonesoup.service.MemberServoice;
 
@@ -66,8 +69,19 @@ public class MemberController {
 		return entity;
 	}
 	
+	// 로그인 구문
 	@GetMapping("/login")
-	public void login() {
+	public void login(LoginDTO dto, HttpSession session, RedirectAttributes rttr) throws Exception {
+		
+//		vo.setMember_pw(passwordEncoder.encode(vo.getMember_pw()));
+		
+		MemberVO mb_vo = memberServoice.login(dto);
+		
+		String url = "";
+		String msg = "";
+		
+		// 아이디 일치 확인 구문
+//		if()
 		
 	}
 	

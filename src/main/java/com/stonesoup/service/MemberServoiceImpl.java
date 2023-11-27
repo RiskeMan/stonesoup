@@ -2,6 +2,7 @@ package com.stonesoup.service;
 
 import org.springframework.stereotype.Service;
 
+import com.stonesoup.data.LoginDTO;
 import com.stonesoup.data.MemberVO;
 import com.stonesoup.mapper.MemberMapper;
 
@@ -23,6 +24,12 @@ public class MemberServoiceImpl implements MemberServoice {
 	public String idcheck(String member_id) {
 		// TODO Auto-generated method stub
 		return memberMapper.idcheck(member_id);
+	}
+
+	@Override
+	public MemberVO login(LoginDTO dto) {
+		// TODO Auto-generated method stub
+		return memberMapper.login(dto);
 	}
 	
 	

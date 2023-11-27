@@ -5,6 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -59,7 +60,7 @@ public class EmailController {
 	
 	// 인증코드 확인
 	@GetMapping("/add_code_ok")
-	public ResponseEntity<String> add_code_ok(String add_code, HttpSession session) {
+	public ResponseEntity<String> add_code_ok(@ModelAttribute("add_code") String add_code, HttpSession session) {
 		
 		ResponseEntity<String> entity = null;
 		
