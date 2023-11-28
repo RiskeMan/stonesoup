@@ -51,7 +51,7 @@
                                                             <div style="text-align: left;"><label
                                                                     for="member_id">아이디</label></div>
                                                             <input type="text" id="member_id" name="vo.member_id"
-                                                                class="form-control" placeholder="아이디" value="user000">
+                                                                class="form-control" placeholder="아이디" value="user00">
                                                         </div>
                                                         <div class="form-label-group">
                                                             <div style="text-align: left;"><label

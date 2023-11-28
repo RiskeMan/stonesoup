@@ -5,9 +5,11 @@ import com.stonesoup.data.MemberVO;
 
 public interface MemberServoice {
 
-	public void join(MemberVO vo);
+	void join(MemberVO vo);
 	
-	public String idcheck(String member_id);
+	String idcheck(String member_id);
 	
-	public MemberVO login(LoginDTO dto);
+	MemberVO login(LoginDTO dto);
+	
+	void login_new(LoginDTO dto);
 }

@@ -35,7 +35,7 @@
 		
 	</select>
 	
-	<update id="">
+	<update id="login_new" parameterType="com.stonesoup.data.LoginDTO">
 	
 		UPDATE
 			MEMBER

@@ -31,6 +31,12 @@ public class MemberServoiceImpl implements MemberServoice {
 		// TODO Auto-generated method stub
 		return memberMapper.login(dto);
 	}
+
+	@Override
+	public void login_new(LoginDTO dto) {
+		// TODO Auto-generated method stub
+		memberMapper.login_new(dto);
+	}
 	
 	
 
