@@ -19,6 +19,7 @@ import com.stonesoup.service.MemberServoice;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @Log4j
@@ -68,9 +69,15 @@ public class MemberController {
 		
 		return entity;
 	}
+
+	// 로그인 페이지.
+	@GetMapping("/login")
+	public void login() {
+		
+	}
 	
 	// 로그인 구문
-	@GetMapping("/login")
+	@PostMapping("/login")
 	public String login(LoginDTO dto, HttpSession session, RedirectAttributes rttr) throws Exception {
 		
 //		vo.setMember_pw(passwordEncoder.encode(vo.getMember_pw()));
