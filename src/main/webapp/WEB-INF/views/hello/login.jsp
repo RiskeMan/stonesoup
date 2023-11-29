@@ -61,7 +61,7 @@
                                                         </div>
                                                         <br><br>
 
-                                                        <button class="btn btn-lg btn-primary btn-block"
+                                                        <button class="btn btn-lg btn-primary btn-block" id="btn_login"
                                                             type="submit">확인</button>
                                                     </form>
 
@@ -89,14 +89,28 @@
 
                             $(document).ready(function () {
 
-
-
-
                                 let msg = '${msg}';
                                 if(msg != "") {
                                     alert(msg);
                                 }
 
+                                // let form_data = $("#form_data");
+
+                                // $("#btn_login").on("click", function(e) {
+                                //     e.prototype();
+                                //     if($("#member_id").val() == "") {
+                                //         alert("아이디를 입력해 주세요.");
+                                //         $("#member_id").focus();
+                                //         return;
+                                //     }if($("#member_pw").val() == "") {
+                                //         alert("비밀번호를 입력해 주세요.");
+                                //         $("#member_pw").focus();
+                                //         return;
+                                //     }
+
+                                //     form_data.submit();
+
+                                // });
                             });
 
                         </script>
