@@ -1,6 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 
     <!doctype html>
     <html lang="ko">
@@ -146,8 +144,6 @@
             <%@include file="/WEB-INF/views/comm/footer.jsp" %>
         </footer>
 
-
-	<%@include file="/WEB-INF/views/comm/header.jsp" %>
 	<!-- j쿼리 구문 -->
 	<%@include file="/WEB-INF/views/comm/plugln.jsp" %>
     <script>

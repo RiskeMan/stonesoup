@@ -116,5 +116,57 @@ public class MemberController {
 		
 	}
 	
+	// 로그아웃 구문
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		
+		session.invalidate();
+		
+		return "redirect:/";
+	}
+	
+	// 회원수정 본인 확인용 페이지
+	@GetMapping("/member_editdata_who")
+	public void member_editdata_who() {
+		
+	}
+	
+	// 회원수정 본인 확인 인증구문
+	@PostMapping("/member_editdata_who")
+	public String member_editdata_who(LoginDTO dto, HttpSession session, RedirectAttributes rttr) {
+		
+		MemberVO mb_vo = memberServoice.login(dto);
+		
+		String url = "";
+		String msg = "";
+		
+		// 아이디 확인 검사
+		if(mb_vo != null) {
+			
+			// 비밀번호 일치 여부 검사
+			if(passwordEncoder.matches(dto.getMember_pw(), mb_vo.getMember_pw())) {
+				
+				// 로그인 시간 업데이트 구문
+				memberServoice.login_new(dto);
+				
+				// 로그인 성공. 세션에 로그인 데이터를 저장
+				session.setAttribute("loginStatus", mb_vo);
+				
+				url = "/"; // 메인 페이지
+			}else {
+				msg = "비밀번호가 일치하지 않습니다.";
+				session.invalidate(); // 본인이 아닐 가능성이 있으니 세션을 날린다.
+				url = "/hello/login"; // 로그인 페이지 주소로 돌려보낸다.
+				rttr.addFlashAttribute("msg", msg);
+			}
+		}else {
+			// 테이블 데이터에 일치하는 ID가 없을 때 넘어온다.
+			msg = "아이디를 다시 확인해 주세요.";
+			url = "/hello/member_editdata";
+			rttr.addFlashAttribute("msg", msg);
+		}
+		
+		return "redirect:" + url;
+	}
 	
 }
